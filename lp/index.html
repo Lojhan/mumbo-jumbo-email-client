@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lero Lero Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom slider styles */
+        input[type="range"].slider {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"].slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: 3px solid #6366f1;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        input[type="range"].slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: 3px solid #6366f1;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        input[type="range"].slider:hover::-webkit-slider-thumb {
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.6);
+        }
+
+        input[type="range"].slider:hover::-moz-range-thumb {
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.6);
+        }
+    </style>
+    <script>
+        // Dark mode toggle logic
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm fixed w-full top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="ml-2 text-2xl font-bold text-gray-900 dark:text-white">Lero Lero</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Recursos</a>
+                    <a href="#demo" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Demo</a>
+                    <a href="#pricing" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Preços</a>
+
+                    <!-- Dark Mode Toggle -->
+                    <!-- <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                        <svg id="sunIcon" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moonIcon" class="w-5 h-5 text-gray-700 dark:text-gray-300 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button> -->
+                </div>
+                <div>
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition">
+                        Começar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 ">
+                    Tá com preguisa de escrever seus emails papai?
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                        Lero Lero Generator
+                    </span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Escreva emails profissionais, persuasivos e personalizados em segundos.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-600 transition shadow-lg hover:shadow-xl">
+                        Experimentar Grátis
+                    </button>
+                    <button class="bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-600 transition border-2 border-gray-200 dark:border-gray-600">
+                        Ver Como Funciona
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-colors duration-300">
+                        <div class="text-4xl font-bold text-primary mb-2">95%</div>
+                        <div class="text-gray-600 dark:text-gray-300">Taxa de Resposta</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-colors duration-300">
+                        <div class="text-4xl font-bold text-primary mb-2">10x</div>
+                        <div class="text-gray-600 dark:text-gray-300">Mais Rápido</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-colors duration-300">
+                        <div class="text-4xl font-bold text-primary mb-2">50k+</div>
+                        <div class="text-gray-600 dark:text-gray-300">Usuários Ativos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Recursos Poderosos</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Tudo que você precisa para emails perfeitos</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-xl border-2 border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition bg-white dark:bg-gray-900">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Geração Instantânea</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Crie emails completos em segundos.</p>
+                </div>
+
+                <div class="p-6 rounded-xl border-2 border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition bg-white dark:bg-gray-900">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Tom Personalizado</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Ajuste o tom: profissional, casual, persuasivo e mais.</p>
+                </div>
+
+                <div class="p-6 rounded-xl border-2 border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition bg-white dark:bg-gray-900">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Múltiplos Idiomas</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Escreva emails em mais de 30 idiomas diferentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section with Textarea -->
+    <section id="demo" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Experimente Agora</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Ajuste a quantidade de lero lero</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transition-colors duration-300">
+                <!-- Área de resultado - Acima do slider -->
+                <div id="resultArea" class="mb-8 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-lg border-2 border-indigo-200 dark:border-indigo-500 transition-all duration-300">
+                    <div class="text-sm font-semibold text-indigo-600 dark:text-indigo-300 mb-3">Preview do Email</div>
+                    <div id="generatedText" class="text-gray-800 dark:text-gray-100 text-base leading-relaxed">
+                        Olá! Gostaria de solicitar seu feedback sobre nosso produto.
+                    </div>
+                </div>
+
+                <!-- Controle de temperatura -->
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-4">
+                        Temperatura do Lero Lero
+                    </label>
+                    <div class="relative">
+                        <input type="range" id="temperatureSlider" min="0" max="100" value="50" class="w-full h-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="flex justify-between mt-3 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400 font-medium">0 - Texto Direto</span>
+                            <span id="temperatureValue" class="text-primary font-bold text-lg">50</span>
+                            <span class="text-gray-600 dark:text-gray-400 font-medium">100 - Cheio de Lero Lero</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Planos Transparentes</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Escolha o plano ideal para suas necessidades</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="bg-white dark:bg-gray-900 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 hover:border-primary transition">
+                    <h3 class="text-2xl font-bold mb-2 dark:text-white">Starter</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Para uso pessoal</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold dark:text-white">R$29</span>
+                        <span class="text-gray-600 dark:text-gray-400">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">100 emails /mês</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Todos os tons disponíveis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">5 idiomas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Suporte por email</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                        Começar
+                    </button>
+                </div>
+
+                <!-- Professional Plan (Featured) -->
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 transform scale-105 shadow-2xl relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">
+                        MAIS POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Professional</h3>
+                    <p class="text-indigo-100 mb-6">Para profissionais</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-white">R$79</span>
+                        <span class="text-indigo-100">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">500 emails /mês</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Todos os tons + personalizados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">30+ idiomas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Templates personalizados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Suporte prioritário</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg">
+                        Começar Agora
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-white dark:bg-gray-900 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 hover:border-primary transition">
+                    <h3 class="text-2xl font-bold mb-2 dark:text-white">Enterprise</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Para empresas</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold dark:text-white">R$199</span>
+                        <span class="text-gray-600 dark:text-gray-400">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Emails ilimitados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">API de integração</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Usuários ilimitados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700 dark:text-gray-300">Gerente de conta dedicado</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                        Falar com Vendas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary to-secondary">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Pronto para Revolucionar Seus Emails?
+            </h2>
+            <p class="text-xl text-indigo-100 mb-8">
+                Junte-se a milhares de profissionais que economizam horas toda semana
+            </p>
+            <button class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition shadow-lg">
+                Começar Gratuitamente
+            </button>
+            <p class="text-indigo-100 mt-4">Não precisa cartão de crédito</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-gray-950 text-gray-300 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="ml-2 text-xl font-bold text-white">Lero Lero</span>
+                    </div>
+                    <p class="text-sm">Transformando comunicação.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Produto</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Recursos</a></li>
+                        <li><a href="#" class="hover:text-white transition">Preços</a></li>
+                        <li><a href="#" class="hover:text-white transition">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Sobre</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Carreiras</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition">Termos</a></li>
+                        <li><a href="#" class="hover:text-white transition">Segurança</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 dark:border-gray-900 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 Lero Lero. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+            });
+        }
+
+        // Temperature Slider Script
+        const temperatureSlider = document.getElementById('temperatureSlider');
+        const temperatureValue = document.getElementById('temperatureValue');
+        const generatedText = document.getElementById('generatedText');
+
+        // Função para gerar texto baseado na temperatura
+        function generateText(temp) {
+            if (temp <= 10) {
+                return "Olá. Preciso de feedback sobre o produto. Obrigado.";
+            } else if (temp <= 20) {
+                return "Olá! Gostaria de solicitar seu feedback sobre nosso produto. Obrigado.";
+            } else if (temp <= 30) {
+                return "Olá! Espero que esteja bem. Gostaria de solicitar seu valioso feedback sobre nosso produto. Agradeço sua atenção.";
+            } else if (temp <= 40) {
+                return "Prezado cliente, espero que esteja tendo um ótimo dia. Gostaria de solicitar gentilmente seu valioso feedback sobre nosso produto. Sua opinião é muito importante para nós. Agradeço antecipadamente.";
+            } else if (temp <= 50) {
+                return "Prezado cliente, primeiramente espero que esteja tendo um excelente dia. Venho por meio desta solicitar gentilmente seu valioso e importante feedback sobre nosso produto. Sua opinião é extremamente importante para continuarmos melhorando. Agradeço imensamente sua atenção.";
+            } else if (temp <= 60) {
+                return "Prezado e estimado cliente, primeiramente gostaria de expressar que espero sinceramente que esteja tendo um excelente e produtivo dia. Venho por meio desta comunicação solicitar muito gentilmente seu valioso, importante e construtivo feedback sobre nosso produto. Sua opinião é extremamente importante e fundamental para que possamos continuar melhorando cada vez mais. Agradeço imensamente sua valiosa atenção e tempo dedicado.";
+            } else if (temp <= 70) {
+                return "Prezado e estimado cliente, primeiramente gostaria de expressar meus sinceros votos de que esteja tendo um dia absolutamente excelente e extremamente produtivo. Venho, através desta comunicação formal, solicitar de maneira muito gentil e respeitosa seu valioso, importante e extremamente construtivo feedback acerca do nosso produto. Sua valiosa opinião é de suma importância e absolutamente fundamental para que possamos dar continuidade ao nosso processo de melhoria contínua. Agradeço imensamente e de coração sua valiosa atenção e precioso tempo dedicado a esta solicitação.";
+            } else if (temp <= 80) {
+                return "Meu prezado e muito estimado cliente, antes de qualquer coisa, gostaria de expressar meus mais sinceros e calorosos votos de que esteja tendo um dia absolutamente excelente, extremamente produtivo e repleto de realizações. Venho, através desta comunicação de caráter formal, solicitar de maneira extremamente gentil, cordial e respeitosa seu tão valioso, importante e extraordinariamente construtivo feedback acerca do nosso produto, que foi desenvolvido pensando em suas necessidades. Sua valiosa e preciosa opinião é de suma e absoluta importância, sendo absolutamente fundamental e imprescindível para que possamos dar continuidade ao nosso constante e permanente processo de melhoria contínua e aperfeiçoamento. Agradeço imensamente, profundamente e de todo coração sua valiosa atenção e precioso tempo dedicado a esta humilde solicitação.";
+            } else if (temp <= 90) {
+                return "Meu muito prezado, estimado e valorizado cliente, antes de mais nada e primeiramente, gostaria de tomar este momento para expressar meus mais sinceros, genuínos e extremamente calorosos votos de que esteja tendo, neste exato momento, um dia absolutamente excepcional, extremamente produtivo, repleto de grandes realizações e conquistas significativas. Venho, através desta presente comunicação de natureza formal e respeitosa, solicitar de maneira extremamente gentil, cordial, atenciosa e profundamente respeitosa seu tão valioso, importante, significativo e extraordinariamente construtivo feedback acerca do nosso produto, o qual foi cuidadosamente desenvolvido e elaborado pensando especificamente em suas necessidades específicas e particulares. Sua valiosa, preciosa e inestimável opinião é de suma, absoluta e inquestionável importância, sendo absolutamente fundamental, essencial e verdadeiramente imprescindível para que possamos dar continuidade ao nosso constante, permanente e incessante processo de melhoria contínua, aperfeiçoamento e evolução. Agradeço imensamente, profundamente, sinceramente e de todo o meu coração sua valiosa atenção, precioso tempo e gentil disposição dedicados a esta humilde e respeitosa solicitação.";
+            } else {
+                return "Meu muito prezado, altamente estimado, extremamente valorizado e imensamente respeitado cliente, antes de absolutamente qualquer outra coisa e em primeiro lugar, gostaria de tomar este precioso e importante momento para expressar meus mais sinceros, genuínos, autênticos e extraordinariamente calorosos votos e desejos de que esteja tendo, neste exato e presente momento, um dia absolutamente excepcional, extremamente produtivo, significativamente enriquecedor, repleto de grandes e importantes realizações e conquistas verdadeiramente significativas e memoráveis. Venho, através desta presente e formal comunicação de natureza profissional, cordial e profundamente respeitosa, solicitar de maneira extremamente gentil, cordial, atenciosa, delicada e profundamente respeitosa seu tão valioso, importante, significativo, relevante e extraordinariamente construtivo feedback acerca do nosso produto, o qual foi muito cuidadosamente desenvolvido, minuciosamente elaborado e estrategicamente planejado pensando especificamente, direta e exclusivamente em suas necessidades específicas, particulares e únicas. Sua valiosa, preciosa, inestimável e absolutamente insubstituível opinião é de suma, absoluta, total e completamente inquestionável importância, sendo absolutamente fundamental, essencial, crucial e verdadeiramente imprescindível para que possamos dar continuidade, manter e fortalecer nosso constante, permanente, incessante e incansável processo de melhoria contínua, aperfeiçoamento constante e evolução progressiva. Agradeço imensamente, profundamente, sinceramente, genuinamente e de todo o meu coração sua valiosa atenção, precioso tempo, gentil disposição e bondosa consideração dedicados a esta humilde, respeitosa e importante solicitação.";
+            }
+        }
+
+        // Atualizar em tempo real
+        if (temperatureSlider && temperatureValue && generatedText) {
+            temperatureSlider.addEventListener('input', (e) => {
+                const temp = parseInt(e.target.value);
+                temperatureValue.textContent = temp;
+                generatedText.textContent = generateText(temp);
+            });
+
+            // Inicializar com valor padrão
+            generatedText.textContent = generateText(50);
+        }
+    </script>
+</body>
+
+</html>
